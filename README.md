@@ -31,7 +31,7 @@
 ---
 # Блок-схема
 
-> https://www.mermaidchart.com/raw/f4f5a54c-2c2d-4e74-b6b6-5e7921b12c0e?theme=light&version=v0.1&format=svg
+> https://www.mermaidchart.com/raw/52790184-7643-458d-827a-e09805cc89d9?theme=light&version=v0.1&format=svg
 
 ---
 # Диаграмма классов
@@ -65,6 +65,6 @@
 ---
 # BPMN диаграмма
 
-> https://www.mermaidchart.com/raw/52790184-7643-458d-827a-e09805cc89d9?theme=light&version=v0.1&format=svg
+> https://www.plantuml.com/plantuml/svg/TPBFxjCm383lUGeVztk5zi0A20a9mUWsSSvIXvcbIKcSeabzU9frqSBAZcxy-VEVRWDBpx4tOZe6z9EunQBQnrDF3Cqm65AIoTbQL3llHkeG3XWO3Z9SQY6c8WK-KXWagtCgLBMea4RyjmPfsBoFMgE7Jz6OTs_0PxImkM9u4m0prBkP-MOw34zwj1rfKNquexh0lKOpIZBoH8RucffPFa-bvglZ_wkQhYi5m0uMf1O0qm5bcWFsQ52nyrD2bW3octR-iGjeSIJya-1appdt3Wq--n-EwHPL2ryk5o3NoewT306xTIc0btTOdglvsRkdQsJq68h4UL-ahv2-WTFGA8K3IwjmIKSJ43RMPMzUUSPRvEZjwyMkXIt-Zcd0p_sjmnujW_Qkdrl8o7BwKhvIftCcqmz9JFOdV8yOKykbRZrTplv2WMkHHQKcmokqnL-eoZzJ17Q3sCv1xCrV
 
 ---
