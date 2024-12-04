@@ -31,7 +31,7 @@
 ---
 # Блок-схема
 
-![](jpg/scheme.jpg)
+> https://www.mermaidchart.com/raw/f4f5a54c-2c2d-4e74-b6b6-5e7921b12c0e?theme=light&version=v0.1&format=svg
 
 ---
 # Диаграмма классов
@@ -49,7 +49,7 @@
 - Диспетчер заявок пытается распределить его к преподавателю, используя TeacherSelector
 - Если мест нет, заявка попадает в буфер-очередь
 
-![](jpg/classes.jpg)
+> https://www.mermaidchart.com/raw/3a4af77e-7d47-408d-94c7-dc5b27bc449d?theme=light&version=v0.1&format=svg
 
 ---
 # Сиквенс-диаграмма
@@ -60,11 +60,11 @@
 - Если нет места – добавляет в очередь
 - При переполнении буфера удаляются старые заявки
 
-![](jpg/sequence.jpg)
+> https://www.mermaidchart.com/raw/736a536b-80bf-4b7e-aa07-32b8ecad85ca?theme=light&version=v0.1&format=svg
 
 ---
 # BPMN диаграмма
 
-![](jpg/bpmn.jpg)
+> https://www.mermaidchart.com/raw/52790184-7643-458d-827a-e09805cc89d9?theme=light&version=v0.1&format=svg
 
 ---
