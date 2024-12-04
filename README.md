@@ -31,7 +31,7 @@
 ---
 # Блок-схема
 
-> https://www.mermaidchart.com/raw/52790184-7643-458d-827a-e09805cc89d9?theme=light&version=v0.1&format=svg
+> [Ссылка на блок-схему](https://www.mermaidchart.com/raw/52790184-7643-458d-827a-e09805cc89d9?theme=light&version=v0.1&format=svg)
 
 ---
 # Диаграмма классов
@@ -49,7 +49,7 @@
 - Диспетчер заявок пытается распределить его к преподавателю, используя TeacherSelector
 - Если мест нет, заявка попадает в буфер-очередь
 
-> https://www.mermaidchart.com/raw/3a4af77e-7d47-408d-94c7-dc5b27bc449d?theme=light&version=v0.1&format=svg
+> [Ссылка на диаграмму классов](https://www.mermaidchart.com/raw/3a4af77e-7d47-408d-94c7-dc5b27bc449d?theme=light&version=v0.1&format=svg)
 
 ---
 # Сиквенс-диаграмма
@@ -60,11 +60,9 @@
 - Если нет места – добавляет в очередь
 - При переполнении буфера удаляются старые заявки
 
-> https://www.mermaidchart.com/raw/736a536b-80bf-4b7e-aa07-32b8ecad85ca?theme=light&version=v0.1&format=svg
+> [Ссылка на сиквенс](https://www.mermaidchart.com/raw/736a536b-80bf-4b7e-aa07-32b8ecad85ca?theme=light&version=v0.1&format=svg)
 
 ---
 # BPMN диаграмма
 
-> https://www.plantuml.com/plantuml/svg/TPBFxjCm383lUGeVztk5zi0A20a9mUWsSSvIXvcbIKcSeabzU9frqSBAZcxy-VEVRWDBpx4tOZe6z9EunQBQnrDF3Cqm65AIoTbQL3llHkeG3XWO3Z9SQY6c8WK-KXWagtCgLBMea4RyjmPfsBoFMgE7Jz6OTs_0PxImkM9u4m0prBkP-MOw34zwj1rfKNquexh0lKOpIZBoH8RucffPFa-bvglZ_wkQhYi5m0uMf1O0qm5bcWFsQ52nyrD2bW3octR-iGjeSIJya-1appdt3Wq--n-EwHPL2ryk5o3NoewT306xTIc0btTOdglvsRkdQsJq68h4UL-ahv2-WTFGA8K3IwjmIKSJ43RMPMzUUSPRvEZjwyMkXIt-Zcd0p_sjmnujW_Qkdrl8o7BwKhvIftCcqmz9JFOdV8yOKykbRZrTplv2WMkHHQKcmokqnL-eoZzJ17Q3sCv1xCrV
-
----
+> [Ссылка на BPMN диаграмму](https://www.plantuml.com/plantuml/svg/TPBFxjCm383lUGeVztk5zi0A20a9mUWsSSvIXvcbIKcSeabzU9frqSBAZcxy-VEVRWDBpx4tOZe6z9EunQBQnrDF3Cqm65AIoTbQL3llHkeG3XWO3Z9SQY6c8WK-KXWagtCgLBMea4RyjmPfsBoFMgE7Jz6OTs_0PxImkM9u4m0prBkP-MOw34zwj1rfKNquexh0lKOpIZBoH8RucffPFa-bvglZ_wkQhYi5m0uMf1O0qm5bcWFsQ52nyrD2bW3octR-iGjeSIJya-1appdt3Wq--n-EwHPL2ryk5o3NoewT306xTIc0btTOdglvsRkdQsJq68h4UL-ahv2-WTFGA8K3IwjmIKSJ43RMPMzUUSPRvEZjwyMkXIt-Zcd0p_sjmnujW_Qkdrl8o7BwKhvIftCcqmz9JFOdV8yOKykbRZrTplv2WMkHHQKcmokqnL-eoZzJ17Q3sCv1xCrV)
