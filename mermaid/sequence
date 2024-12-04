@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant User
+    participant ApplicationDispatcher
+    participant Buffer
+    participant TeacherSelector
+    participant Teacher
+
+    User->>ApplicationDispatcher: Submit Application
+    ApplicationDispatcher->>Buffer: Check Buffer Availability
+    alt Buffer Not Full
+        ApplicationDispatcher->>TeacherSelector: Select Available Teacher
+        TeacherSelector-->>ApplicationDispatcher: Recommended Teacher
+        alt Teacher Available
+            ApplicationDispatcher->>Teacher: Assign Application
+            Teacher-->>User: Course Confirmation
+        else No Teacher Available
+            ApplicationDispatcher->>Buffer: Add to Waiting Queue
+            Buffer-->>User: Waiting List Notification
+        end
+    else Buffer Full
+        ApplicationDispatcher->>Buffer: Remove Oldest Application
+        ApplicationDispatcher->>Buffer: Add New Application
+        Buffer-->>User: Waiting List Status
+    end

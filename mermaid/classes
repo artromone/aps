@@ -1,0 +1,57 @@
+classDiagram
+    class User {
+        +ID int
+        +Name string
+        +SkillLevel string
+        +DesiredCourseType string
+        +WaitingTime int
+        +CreateApplication() Application
+    }
+
+    class Application {
+        +ID int
+        +UserID int
+        +CourseType string
+        +SkillLevel string
+        +CreatedAt time.Time
+        +Status string
+        +Validate() bool
+    }
+
+    class Buffer {
+        -applications []Application
+        +MaxSize int
+        +Add(application Application) bool
+        +Remove() Application
+        +IsFull() bool
+        +CleanupOldApplications()
+    }
+
+    class Teacher {
+        +ID int
+        +Name string
+        +Specialization string
+        +QualificationLevel int
+        +CurrentLoad int
+        +MaxLoad int
+        +CanAcceptApplication(application Application) bool
+    }
+
+    class ApplicationDispatcher {
+        -buffer Buffer
+        -teachers []Teacher
+        +ProcessApplication(application Application)
+        +DistributeApplicationToTeacher(application Application) Teacher
+        +HandleBufferOverflow()
+    }
+
+    class TeacherSelector {
+        +SelectTeacherForApplication(application Application, teachers []Teacher) Teacher
+        +CalculateTeacherPriority(teacher Teacher) float64
+    }
+
+    User --> Application : creates
+    Application --> Buffer : enters
+    Buffer --> ApplicationDispatcher : managed by
+    ApplicationDispatcher --> TeacherSelector : uses
+    ApplicationDispatcher --> Teacher : assigns to
