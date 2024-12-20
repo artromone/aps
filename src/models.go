@@ -1,7 +1,7 @@
 package main
 
 import "time"
-// import "fmt"
+import "fmt"
 import "math/rand"
 
 const (
@@ -126,13 +126,13 @@ func (ns *NotificationService) handleEvents(eventChan chan Event) {
 }
 
 func (ns *NotificationService) notifyUserAboutWaitingList(app *Application) {
-	// fmt.Printf("     Notification to User %d: Your application is in waiting list\n", app.UserID)
+	fmt.Printf("     Notification to User %d: Your application is in waiting list\n", app.UserID)
 }
 
 func (ns *NotificationService) notifyUserAboutRemoval(app *Application) {
-	// fmt.Printf("     Notification to User %d: Your application was removed from waiting list\n", app.UserID)
+	fmt.Printf("     Notification to User %d: Your application was removed from waiting list\n", app.UserID)
 }
 
 func (ns *NotificationService) notifyUserAboutResult(app *Application) {
-	// fmt.Printf("     Notification to User %d: Your application status is %s\n", app.UserID, app.Status)
+	fmt.Printf("     Notification to User %d: Your application status is %s\n", app.UserID, app.Status)
 }

@@ -9,14 +9,13 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	// Параметры запуска
+    // 10 10 1
 	isStepMode := flag.Bool("step", false, "Run in step-by-step mode")
-	bufferSize := flag.Int("buffer", 1, "Buffer size")
-	teacherCount := flag.Int("teachers", 1, "Number of teachers")
-	teacherLoad := flag.Int("maxload", 5, "Teacher max load")
+	bufferSize := flag.Int("buffer", 3, "Buffer size")
+	teacherCount := flag.Int("teachers", 3, "Number of teachers")
+	teacherLoad := flag.Int("maxload", 3, "Teacher max load")
 	flag.Parse()
 
-	// Инициализация системы
 	system := NewSystem(*bufferSize, *teacherCount, *teacherLoad)
 
 	if *isStepMode {
