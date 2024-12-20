@@ -21,8 +21,6 @@ func (s *System) processNextStep() {
 
 	// Симулируем работу учителей
 	s.dispatcher.simulateTeachersWork()
-
-	// Создаем новую заявку
 	app := s.userService.CreateApplication()
 
 	s.eventBus.Publish(Event{
@@ -87,5 +85,5 @@ func (s *System) RunAutoMode() {
 			time.Sleep(time.Second / 50)
 		}
 	}
-	s.printFinalDigitsStatistics()
+	s.printFinalStatistics()
 }
