@@ -1,7 +1,7 @@
 package main
 
 import "time"
-import "fmt"
+// import "fmt"
 import "math/rand"
 
 const (
@@ -86,14 +86,14 @@ func (t *Teacher) processApplication(app *Application) {
 		app.TestTask.Status = "Passed"
 
 		// Подтверждаем зачисление
-		if rand.Float32() < 0.9 { // 90% шанс подтверждения
+		if rand.Float32() < 0.8 { // 90% шанс подтверждения
 			app.Status = StatusEnrolled
 		}
 	} else {
 		app.Status = StatusFailed
 		app.TestTask.Status = "Failed"
 
-		if rand.Float32() < 0.5 { // 50% шанс на доработку
+		if rand.Float32() < 0.4 { // 50% шанс на доработку
 			app.Status = StatusImprovement
 		}
 	}
@@ -126,13 +126,13 @@ func (ns *NotificationService) handleEvents(eventChan chan Event) {
 }
 
 func (ns *NotificationService) notifyUserAboutWaitingList(app *Application) {
-	fmt.Printf("Notification to User %d: Your application is in waiting list\n", app.UserID)
+	// fmt.Printf("     Notification to User %d: Your application is in waiting list\n", app.UserID)
 }
 
 func (ns *NotificationService) notifyUserAboutRemoval(app *Application) {
-	fmt.Printf("Notification to User %d: Your application was removed from waiting list\n", app.UserID)
+	// fmt.Printf("     Notification to User %d: Your application was removed from waiting list\n", app.UserID)
 }
 
 func (ns *NotificationService) notifyUserAboutResult(app *Application) {
-	fmt.Printf("Notification to User %d: Your application status is %s\n", app.UserID, app.Status)
+	// fmt.Printf("     Notification to User %d: Your application status is %s\n", app.UserID, app.Status)
 }

@@ -33,13 +33,22 @@ func (d *ApplicationDispatcher) processBuffer() {
 func (d *ApplicationDispatcher) simulateTeachersWork() {
 	for _, teacher := range d.teachers {
 		// С некоторой вероятностью учитель завершает задачу
-		if teacher.CurrentLoad > 0 && rand.Float32() < 0.1 { // 30% шанс завершения задачи
+		if teacher.CurrentLoad > 0 && rand.Float32() < 0.3 { // 30% шанс завершения задачи
 			if completedApp := teacher.completeRandomTask(); completedApp != nil {
-				d.eventBus.Publish(Event{
-					Type:      "ApplicationProcessed",
-					Data:      completedApp,
-					Timestamp: time.Now(),
-				})
+				if completedApp.TestTask.Status == "Passed" {
+					d.eventBus.Publish(Event{
+						Type:      "ApplicationProcessed",
+						Data:      completedApp,
+						Timestamp: time.Now(),
+					})
+				}
+				if completedApp.TestTask.Status == "Failed" {
+					d.eventBus.Publish(Event{
+						Type:      "ApplicationRejected",
+						Data:      completedApp,
+						Timestamp: time.Now(),
+					})
+				}
 			}
 		}
 	}
@@ -66,10 +75,10 @@ func (d *ApplicationDispatcher) assignToTeacher(app *Application, teacher *Teach
 	})
 }
 
-func NewApplicationDispatcher(teacherCount int, buffer *Buffer, eventBus *EventBus) *ApplicationDispatcher {
+func NewApplicationDispatcher(teacherCount, teacherLoad int, buffer *Buffer, eventBus *EventBus) *ApplicationDispatcher {
 	teachers := make([]*Teacher, teacherCount)
 	for i := 0; i < teacherCount; i++ {
-		teachers[i] = NewTeacher(i+1, 3)
+		teachers[i] = NewTeacher(i+1, teacherLoad)
 	}
 
 	return &ApplicationDispatcher{

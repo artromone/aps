@@ -43,7 +43,11 @@ func (s *System) printFinalStatistics() {
 	s.statistics.PrintCurrentStats()
 }
 
-func NewSystem(bufferSize, teacherCount int) *System {
+func (s *System) printFinalDigitsStatistics() {
+	s.statistics.PrintDigitCurrentStats()
+}
+
+func NewSystem(bufferSize, teacherCount, teacherLoad int) *System {
 	eventBus := NewEventBus()
 	buffer := NewBuffer(bufferSize, eventBus)
 
@@ -51,7 +55,7 @@ func NewSystem(bufferSize, teacherCount int) *System {
 		eventBus:            eventBus,
 		userService:         NewUserService(eventBus),
 		buffer:              buffer,
-		dispatcher:          NewApplicationDispatcher(teacherCount, buffer, eventBus),
+		dispatcher:          NewApplicationDispatcher(teacherCount, teacherLoad, buffer, eventBus),
 		statistics:          NewStatistics(eventBus),
 		notificationService: NewNotificationService(eventBus),
 	}
@@ -77,9 +81,11 @@ func (s *System) RunStepMode() {
 }
 
 func (s *System) RunAutoMode() {
-	for i := 0; i < 100; i++ { // Например, 100 итераций
-		s.processNextStep()
-		time.Sleep(time.Second) // Задержка для наглядности
+	for j := 0; j < 5; j++ {
+		for i := 0; i < 100; i++ {
+			s.processNextStep()
+			time.Sleep(time.Second / 50)
+		}
 	}
-	s.printFinalStatistics()
+	s.printFinalDigitsStatistics()
 }

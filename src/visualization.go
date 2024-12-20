@@ -21,11 +21,10 @@ func (v *SystemVisualizer) PrintSystemState() {
 }
 
 func (v *SystemVisualizer) printBuffer() {
-	fmt.Println("\nBuffer State:")
-	fmt.Printf("Capacity: %d/%d\n", len(v.system.buffer.applications), v.system.buffer.maxSize)
-
+	fmt.Print("\nBuffer State: ")
+    fmt.Printf("%d/%d\n", len(v.system.buffer.applications), v.system.buffer.maxSize)
 	if len(v.system.buffer.applications) > 0 {
-		fmt.Println("Applications in buffer:")
+
 		for i, app := range v.system.buffer.applications {
 			fmt.Printf("[%d] App ID: %d, Status: %s\n", i+1, app.ID, app.Status)
 		}
@@ -35,15 +34,15 @@ func (v *SystemVisualizer) printBuffer() {
 func (v *SystemVisualizer) printTeachers() {
 	fmt.Println("\nTeachers State:")
 	for _, teacher := range v.system.dispatcher.teachers {
-		fmt.Printf("Teacher %d: Load %d/%d\n",
+		fmt.Printf(" - Teacher %d: Load %d/%d\n",
 			teacher.ID,
 			teacher.CurrentLoad,
 			teacher.MaxLoad)
 
 		if len(teacher.Applications) > 0 {
-			fmt.Println("Current applications:")
+			fmt.Println("   - Current applications:")
 			for _, app := range teacher.Applications {
-				fmt.Printf("  - App ID: %d, Status: %s\n", app.ID, app.Status)
+				fmt.Printf("     - App ID: %d, Status: %s\n", app.ID, app.Status)
 			}
 		}
 	}

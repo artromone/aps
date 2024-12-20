@@ -23,6 +23,7 @@ func NewStatistics(eventBus *EventBus) *Statistics {
 	// Подписка на события через каналы
 	eventBus.Subscribe("ApplicationProcessed", stats.processedChan)
 	eventBus.Subscribe("ApplicationRejected", stats.rejectedChan)
+	eventBus.Subscribe("ApplicationRemoved", stats.rejectedChan)
 
 	// Запуск горутин для обработки событий
 	go stats.handleEvents()
@@ -51,7 +52,7 @@ func (s *Statistics) handleProcessed(event Event) {
 }
 
 func (s *Statistics) handleRejected(event Event) {
-	// s.totalApplications++
+	s.totalApplications++
 	s.rejectedApplications++
 }
 
@@ -60,5 +61,12 @@ func (s *Statistics) PrintCurrentStats() {
 	fmt.Printf("Total Applications: %d\n", s.totalApplications)
 	fmt.Printf("Processed: %d\n", s.processedApplications)
 	fmt.Printf("Rejected: %d\n", s.rejectedApplications)
-	fmt.Printf("Average Waiting Time: %.2f seconds\n", s.averageWaitingTime)
+	fmt.Printf("Average Waiting Time: %.4f seconds\n", s.averageWaitingTime)
+}
+
+func (s *Statistics) PrintDigitCurrentStats() {
+	fmt.Printf("%d\n", s.totalApplications)
+	fmt.Printf("%d\n", s.processedApplications)
+	fmt.Printf("%d\n", s.rejectedApplications)
+	fmt.Printf("%.4f\n", s.averageWaitingTime)
 }
