@@ -13,6 +13,8 @@ type System struct {
 	dispatcher          *ApplicationDispatcher
 	statistics          *Statistics
 	notificationService *NotificationService
+	generator           *PoissonGenerator
+	stepInterval        float64 // интервал одного шага в секундах
 }
 
 func (s *System) processNextStep() {
@@ -21,15 +23,19 @@ func (s *System) processNextStep() {
 
 	// Симулируем работу учителей
 	s.dispatcher.simulateTeachersWork()
-	app := s.userService.CreateApplication()
 
-	s.eventBus.Publish(Event{
-		Type:      "NewApplication",
-		Data:      app,
-		Timestamp: time.Now(),
-	})
+	eventsCount := s.generator.GetEventsCountForInterval(s.stepInterval)
 
-	s.dispatcher.ProcessApplication(app)
+	// Создаем все сгенерированные заявки
+	for i := 0; i < eventsCount; i++ {
+		app := s.userService.CreateApplication()
+		s.eventBus.Publish(Event{
+			Type:      "NewApplication",
+			Data:      app,
+			Timestamp: time.Now(),
+		})
+		s.dispatcher.ProcessApplication(app)
+	}
 }
 
 func (s *System) printSystemState() {
@@ -45,7 +51,7 @@ func (s *System) printFinalDigitsStatistics() {
 	s.statistics.PrintDigitCurrentStats()
 }
 
-func NewSystem(bufferSize, teacherCount, teacherLoad int) *System {
+func NewSystem(bufferSize, teacherCount, teacherLoad int, lambda float64, stepInterval float64) *System {
 	eventBus := NewEventBus()
 	buffer := NewBuffer(bufferSize, eventBus)
 
@@ -56,6 +62,8 @@ func NewSystem(bufferSize, teacherCount, teacherLoad int) *System {
 		dispatcher:          NewApplicationDispatcher(teacherCount, teacherLoad, buffer, eventBus),
 		statistics:          NewStatistics(eventBus),
 		notificationService: NewNotificationService(eventBus),
+		generator:           NewPoissonGenerator(lambda),
+		stepInterval:        stepInterval,
 	}
 }
 
@@ -85,5 +93,5 @@ func (s *System) RunAutoMode() {
 			time.Sleep(time.Second / 50)
 		}
 	}
-	s.printFinalStatistics()
+	s.printFinalDigitsStatistics()
 }
