@@ -44,8 +44,8 @@ func (s *System) printSystemState() {
 	visualizer.PrintSystemState()
 }
 
-func (s *System) printFinalStatistics() {
-	s.statistics.PrintCurrentStats()
+func (s *System) printFinalStatistics(steps int) {
+	s.statistics.PrintCurrentStats(steps)
 }
 
 func (s *System) printFinalDigitsStatistics(steps int) {
@@ -96,5 +96,5 @@ func (s *System) RunAutoMode() {
             steps = i * j;
 		}
 	}
-	s.printFinalDigitsStatistics(steps)
+	s.printFinalStatistics(steps)
 }

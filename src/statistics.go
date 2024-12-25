@@ -57,19 +57,19 @@ func (s *Statistics) handleRejected(event Event) {
 	s.rejectedApplications++
 }
 
-func (s *Statistics) PrintCurrentStats() {
+func (s *Statistics) PrintCurrentStats(steps int) {
 	fmt.Printf("\nCurrent Statistics:\n")
 	fmt.Printf("Total Applications: %d\n", s.totalApplications)
 	fmt.Printf("Processed: %d\n", s.processedApplications)
 	fmt.Printf("Rejected: %d\n", s.rejectedApplications)
 	fmt.Printf("Average Waiting Time: %.4f seconds\n", s.averageWaitingTime)
-    fmt.Printf("Average WorkLoad: %.4f percent\n", s.averageWorkLoad*100)
+	fmt.Printf("Average WorkLoad: %.4f percent\n", s.averageWorkLoad/float64(steps)*100)
 }
 
 func (s *Statistics) PrintDigitCurrentStats(steps int) {
 	fmt.Printf("%d\n", s.totalApplications)
 	fmt.Printf("%d\n", s.processedApplications)
 	// fmt.Printf("%d\n", s.rejectedApplications)
-    fmt.Printf("%.4f\n", s.accumulatWorkload/float64(steps)*100)
+	fmt.Printf("%.4f\n", s.accumulatWorkload/float64(steps)*100)
 	fmt.Printf("%.4f\n", s.averageWaitingTime)
 }

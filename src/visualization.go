@@ -50,7 +50,7 @@ func (v *SystemVisualizer) printTeachers() {
 
 func (v *SystemVisualizer) printStatistics() {
 	fmt.Println("\nCurrent Statistics:")
-	v.system.statistics.PrintCurrentStats()
+	v.system.statistics.PrintCurrentStats(1)
 }
 
 // Добавим таблицу событий
