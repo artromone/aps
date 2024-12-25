@@ -1,6 +1,7 @@
 package main
 
 import "time"
+// import "fmt"
 import "math/rand"
 
 type ApplicationDispatcher struct {
@@ -30,7 +31,10 @@ func (d *ApplicationDispatcher) processBuffer() {
 	}
 }
 
-func (d *ApplicationDispatcher) simulateTeachersWork() {
+func (d *ApplicationDispatcher) simulateTeachersWork() float64 {
+
+	averageLoad := 0.0
+
 	for _, teacher := range d.teachers {
 		// С некоторой вероятностью учитель завершает задачу
 		if teacher.CurrentLoad > 0 && rand.Float32() < 0.3 { // 30% шанс завершения задачи
@@ -50,8 +54,13 @@ func (d *ApplicationDispatcher) simulateTeachersWork() {
 					})
 				}
 			}
+
 		}
+
+		averageLoad += float64(teacher.CurrentLoad) / float64(teacher.MaxLoad)
 	}
+
+	return averageLoad / float64(len(d.teachers))
 }
 
 func (d *ApplicationDispatcher) findAvailableTeacher() *Teacher {

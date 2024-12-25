@@ -93,7 +93,7 @@ func (t *Teacher) processApplication(app *Application) {
 		app.Status = StatusFailed
 		app.TestTask.Status = "Failed"
 
-		if rand.Float32() < 0.4 { // 50% шанс на доработку
+		if rand.Float32() < 0.4 { // 40% шанс на доработку
 			app.Status = StatusImprovement
 		}
 	}
@@ -117,6 +117,8 @@ func (ns *NotificationService) handleEvents(eventChan chan Event) {
 		switch event.Type {
 		case "ApplicationBuffered":
 			ns.notifyUserAboutWaitingList(event.Data.(*Application))
+		case "ApplicationRejected":
+			ns.notifyUserAboutResult(event.Data.(*Application))
 		case "ApplicationRemoved":
 			ns.notifyUserAboutRemoval(event.Data.(*Application))
 		case "ApplicationProcessed":

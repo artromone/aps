@@ -22,7 +22,8 @@ func (s *System) processNextStep() {
 	s.dispatcher.processBuffer()
 
 	// Симулируем работу учителей
-	s.dispatcher.simulateTeachersWork()
+	s.statistics.averageWorkLoad = s.dispatcher.simulateTeachersWork()
+	s.statistics.accumulatWorkload += s.statistics.averageWorkLoad
 
 	eventsCount := s.generator.GetEventsCountForInterval(s.stepInterval)
 
@@ -47,8 +48,8 @@ func (s *System) printFinalStatistics() {
 	s.statistics.PrintCurrentStats()
 }
 
-func (s *System) printFinalDigitsStatistics() {
-	s.statistics.PrintDigitCurrentStats()
+func (s *System) printFinalDigitsStatistics(steps int) {
+	s.statistics.PrintDigitCurrentStats(steps)
 }
 
 func NewSystem(bufferSize, teacherCount, teacherLoad int, lambda float64, stepInterval float64) *System {
@@ -87,11 +88,13 @@ func (s *System) RunStepMode() {
 }
 
 func (s *System) RunAutoMode() {
+    steps := 1;
 	for j := 0; j < 5; j++ {
 		for i := 0; i < 100; i++ {
 			s.processNextStep()
 			time.Sleep(time.Second / 50)
+            steps = i * j;
 		}
 	}
-	s.printFinalDigitsStatistics()
+	s.printFinalDigitsStatistics(steps)
 }

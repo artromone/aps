@@ -48,10 +48,10 @@ def main(folder_path):
     # График 2: Процент отвергнутых заявок
     ax2 = fig.add_subplot(232, projection='3d')
     ax2.scatter(A_vals, B_vals, percent_rejected_vals)
-    ax2.set_title('Процент отвергнутых заявок')
+    ax2.set_title('Загрузка в процентах')
     ax2.set_xlabel('A (Буфер)')
     ax2.set_ylabel('B (Учителя)')
-    ax2.set_zlabel('Процент отвергнутых (%)')
+    ax2.set_zlabel('Загрузка (%)')
 
     # График 3: Среднее время обработки
     ax3 = fig.add_subplot(233, projection='3d')
@@ -72,10 +72,10 @@ def main(folder_path):
     # График 5: Процент отвергнутых заявок от учителей и максимальной загрузки
     ax5 = fig.add_subplot(235, projection='3d')
     ax5.scatter(B_vals, C_vals, percent_rejected_vals)
-    ax5.set_title('Процент отвергнутых заявок\nот Учителей и Макс. нагрузки')
+    ax5.set_title('Загрузка в процентах\nот Учителей и Макс. нагрузки')
     ax5.set_xlabel('B (Учителя)')
     ax5.set_ylabel('C (Макс. нагрузка)')
-    ax5.set_zlabel('Процент отвергнутых (%)')
+    ax5.set_zlabel('Загрузка (%)')
 
     # График 6: Среднее время обработки от учителей и максимальной загрузки
     ax6 = fig.add_subplot(236, projection='3d')

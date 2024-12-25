@@ -8,6 +8,8 @@ type Statistics struct {
 	processedApplications int
 	rejectedApplications  int
 	averageWaitingTime    float64
+	averageWorkLoad       float64
+	accumulatWorkload     float64
 	eventBus              *EventBus
 	processedChan         chan Event
 	rejectedChan          chan Event
@@ -23,7 +25,6 @@ func NewStatistics(eventBus *EventBus) *Statistics {
 	// Подписка на события через каналы
 	eventBus.Subscribe("ApplicationProcessed", stats.processedChan)
 	eventBus.Subscribe("ApplicationRejected", stats.rejectedChan)
-	eventBus.Subscribe("ApplicationRemoved", stats.rejectedChan)
 
 	// Запуск горутин для обработки событий
 	go stats.handleEvents()
@@ -62,11 +63,13 @@ func (s *Statistics) PrintCurrentStats() {
 	fmt.Printf("Processed: %d\n", s.processedApplications)
 	fmt.Printf("Rejected: %d\n", s.rejectedApplications)
 	fmt.Printf("Average Waiting Time: %.4f seconds\n", s.averageWaitingTime)
+    fmt.Printf("Average WorkLoad: %.4f percent\n", s.averageWorkLoad*100)
 }
 
-func (s *Statistics) PrintDigitCurrentStats() {
+func (s *Statistics) PrintDigitCurrentStats(steps int) {
 	fmt.Printf("%d\n", s.totalApplications)
 	fmt.Printf("%d\n", s.processedApplications)
-	fmt.Printf("%d\n", s.rejectedApplications)
+	// fmt.Printf("%d\n", s.rejectedApplications)
+    fmt.Printf("%.4f\n", s.accumulatWorkload/float64(steps)*100)
 	fmt.Printf("%.4f\n", s.averageWaitingTime)
 }
